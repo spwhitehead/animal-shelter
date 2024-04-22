@@ -1,3 +1,6 @@
+# Make the pydantic model `Shelter` that will represent this data, then manually
+# change this list to be a list[Shelter]. You don't need to write code to convert
+# this list, just manually change it by hand.
 shelters: list = [
     {
         "name": "St. George Animal Shelter",
