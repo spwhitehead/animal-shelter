@@ -3,6 +3,10 @@
 # this list, just manually change it by hand.
 from schemas import Shelter, Animal
 
+from fastapi import FastAPI, HTTPException
+
+app = FastAPI()
+
 
 shelters: list = [
     
@@ -33,3 +37,36 @@ shelters: list = [
         )
     )
 ]
+
+@app.get("/")
+async def get_shelters() -> list:
+    return shelters
+
+@app.get("/{shelter_name}/animals")
+async def list_animals(shelter_name: str) -> Animal:
+    for shelter in shelters:
+        if shelter.name == shelter_name:
+            return shelter.animals
+    raise HTTPException(status_code=404, detail="Shelter not found")
+    
+
+@app.post("/")
+async def add_shelter(shelter: Shelter):
+    shelters.append(shelter)
+    return f"{shelter.name} added successfully"
+
+@app.put("/{shelter_name}")
+async def update_animals(shelter_name: str, updated_animals: Animal):
+    for shelter in shelters:
+        if shelter.name == shelter_name:
+            shelter.animals = updated_animals
+            return "Animal count updated successfully"
+    raise HTTPException(status_code=404, detail="Shelter not found")
+
+@app.delete("/{shelter_name}")
+async def delete_shelter(shelter_name: str):
+    for index, shelter in enumerate(shelters):
+        if shelter.name == shelter_name:
+            shelters.pop(index)
+            return "Shelter deleted successfully"
+    raise HTTPException(status_code=404, detail="Shelter not found")
