@@ -1,11 +1,23 @@
 # Make the pydantic model `Shelter` that will represent this data, then manually
 # change this list to be a list[Shelter]. You don't need to write code to convert
 # this list, just manually change it by hand.
+from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+
 from schemas import Shelter, Animal
 
-from fastapi import FastAPI, HTTPException
 
 app = FastAPI()
+
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 shelters: list = [
@@ -25,6 +37,15 @@ shelters: list = [
         animals= Animal(
             cats= 12,
             dogs= 9
+        )
+    ),
+
+    Shelter(
+        name="Sample Shelter D",
+        address="134 Banana Street",
+        animals= Animal(
+            cats= 1,
+            dogs= 43
         )
     ),
 
