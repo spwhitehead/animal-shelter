@@ -1,0 +1,44 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #171717;
+    color: #e7e7e7;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+/* #shelters {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    padding: 1em;
+} */
+
+.shelter-card {
+    background-color: #3f3f3f;
+    padding: 1em;
+    border-radius: 10px;
+    margin-bottom: 1em;
+}
+
+.shelter-card h3 {
+    margin-bottom: 5px;
+}
+
+.shelter-card address {
+    margin-bottom: 10px;
+}
+.shelter-card p {
+    text-align: center;
+    line-height: 1.5;
+}
