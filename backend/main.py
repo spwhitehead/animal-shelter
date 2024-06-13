@@ -59,7 +59,7 @@ shelters: list = [
     )
 ]
 
-@app.get("/")
+@app.get("/shelters")
 async def get_shelters() -> list:
     return shelters
 
